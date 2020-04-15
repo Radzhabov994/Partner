@@ -11,6 +11,20 @@ import Foundation
 struct Partner {
     
     var name: String
-    var inn: String
+    var type: String
     var location: String
+    var image: String
+    
+    static let partners = ["Yandex", "Vkontakte", "Mail.ru", "Avito", "Telegram"]
+    
+    static func getPartners() -> [Partner]{
+        
+        var bpartners = [Partner]()
+        
+        for partner in partners {
+            bpartners.append(Partner(name: partner, type: "IT", location: "Moscow", image: partner))
+        }
+        
+        return bpartners
+    }
 }

@@ -10,35 +10,31 @@ import UIKit
 
 class MainViewController: UITableViewController {
     
-    let partners = ["Yandex", "Vkontakte", "Mail.ru", "Avito", "Telegram"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    let partner = Partner.getPartners()
 
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return partners.count
+        return partner.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
 
-        cell.nameLabel?.text = partners[indexPath.row]
-        cell.imageOfPartner?.image = UIImage(named: partners[indexPath.row])
+        cell.nameLabel?.text = partner[indexPath.row].name
+        cell.locationLabel?.text = partner[indexPath.row].location
+        cell.typeLabel?.text = partner[indexPath.row].type
+        cell.imageOfPartner?.image = UIImage(named: partner[indexPath.row].image)
         cell.imageOfPartner?.layer.cornerRadius = cell.imageOfPartner.frame.size.height / 2
         cell.imageOfPartner?.clipsToBounds = true
 
         return cell
     }
     
-    //MARK: - Table view delegate
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
-    }
-
     /*
     // MARK: - Navigation
 
@@ -48,5 +44,7 @@ class MainViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func cancelAction(_ segue: UIStoryboardSegue) {}
 
 }
