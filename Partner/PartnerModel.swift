@@ -6,25 +6,22 @@
 //  Copyright © 2019 Gamid Radzhabov. All rights reserved.
 //
 
-import Foundation
+import RealmSwift
 
-struct Partner {
+class Partner: Object {
     
-    var name: String
-    var type: String
-    var location: String
-    var image: String
+    @objc dynamic var name = ""
+    @objc dynamic var type: String?
+    @objc dynamic var location: String?
+    @objc dynamic var imageData: Data?
+    @objc dynamic var date = Date()
     
-    static let partners = ["Yandex", "Vkontakte", "Mail.ru", "Avito", "Telegram"]
-    
-    static func getPartners() -> [Partner]{
-        
-        var bpartners = [Partner]()
-        
-        for partner in partners {
-            bpartners.append(Partner(name: partner, type: "IT", location: "Moscow", image: partner))
-        }
-        
-        return bpartners
+    convenience init(name: String, location: String?, type: String?, imageData: Data?){
+        self.init()
+        self.name = name
+        self.location = location
+        self.type = type
+        self.imageData = imageData
     }
+    
 }
